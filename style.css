@@ -1,0 +1,833 @@
+/* กำหนดฟอนต์ KippaxCondensed */
+@font-face {
+  font-family: KippaxCondensed;
+  src: url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-CndBd.woff2)
+      format("woff2"),
+    url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-CndBd.woff)
+      format("woff");
+  font-weight: 700;
+}
+@font-face {
+  font-family: KippaxCondensed;
+  src: url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-CndxBd.woff2)
+      format("woff2"),
+    url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-CndxBd.woff)
+      format("woff");
+  font-weight: 800;
+}
+@font-face {
+  font-family: Kippax;
+  src: url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-Rg.woff2)
+      format("woff2"),
+    url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-Rg.woff)
+      format("woff");
+  font-weight: 400;
+}
+@font-face {
+  font-family: Kippax;
+  src: url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-Bd.woff2)
+      format("woff2"),
+    url(https://fonts.mancity.com/fonts/Kippax/KippaxModern-Bd.woff)
+      format("woff");
+  font-weight: 700;
+}
+
+* {
+  font-family: "Kippax", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* ปรับภาพให้ขยายเต็มความกว้างของ container */
+img {
+  max-width: 100%;
+  vertical-align: middle;  /* จัดแนวภาพให้อยู่กลางแนวแกนตั้ง */
+}
+
+/* ตั้งค่าให้ลิงก์ไม่มีเส้นขีด และใช้สีเดียวกับข้อความ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul > li {
+  list-style: none;
+}
+
+/* ตั้งค่าปุ่มให้ไม่มีขอบ และเปลี่ยน cursor เป็น pointer */
+button {
+  border: 0;
+  outline: none;
+  background: inherit;
+  cursor: pointer;
+}
+
+/* กำหนดขนาดไอคอนทั่วไป */
+.icon {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+/* สไตล์เมนูแถบด้านบน (navigation bar) */
+.nav-bar {
+  background-color: #98c5e9;
+  display: flex; /* ใช้ flexbox เพื่อจัด layout ภายในเป็นแนวนอน */
+  justify-content: center; /* จัดชิดกลางแนวนอน */
+
+  .nav-container {
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    padding: 15px 24px; /* เว้นขอบด้านบน-ล่าง 15px ด้านซ้าย-ขวา 24px */
+    display: flex; /* ใช้ flexbox เพื่อจัด layout ภายในเป็นแนวนอน */
+    max-width: 1200px; /* กำหนดความกว้างสูงสุด */
+    flex: 1;  /* ให้ container ขยายเต็มพื้นที่ที่มี */
+  }
+
+  /* โลโก้ด้านซ้ายมี margin ขวาเพื่อเว้นช่องว่างระหว่างโลโก้กับเมนู */
+  .nav-logo {
+    margin-right: 32px;
+
+    img {
+      height: 70px;
+      width: 67px;
+    }
+  }
+
+  /* กล่องลิงก์เมนูหลัก */
+  .nav-links {
+    display: flex; /* จัดเมนูเป็นแนวนอน */
+    align-items: center; /* จัดชิดกลางแนวตั้ง */
+    gap: 20px; /* ช่องว่างระหว่างลิงก์แต่ละอัน 20px */
+    flex: 1;  /* ขยายเต็มพื้นที่ที่เหลือ */
+    position: relative; /* กำหนดตำแหน่ง relative เพื่อใช้จัดตำแหน่งเมนู dropdown */
+
+    /* สไตล์ลิงก์แต่ละอัน */
+    .nav-link {
+      font-weight: 500;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+       /* ไอคอนภายในลิงก์ */
+      .nav-icon {
+        margin-left: 4px;
+        width: 20px;
+        height: 20px;
+      }
+
+      /* ซ่อนเส้นใต้ก่อนถ้าลิงก์เป็นเมนูแบบเปิดป๊อบอัพ */
+      &:hover.nav-menu-trigger::before {
+        display: none;
+      }
+
+      &:hover::before {
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        border-radius: 50px;
+        padding: 0.5px;
+        bottom: -4px;
+        background-color: black;
+      }
+
+      &:hover .nav-icon {
+        transition: transform 0.2s linear;
+        transform: rotate(-180deg);
+      }
+      &:not(:hover) .nav-icon {
+        transition: transform 0.2s ease-in-out;
+        transform: rotate(0deg);
+      }
+    }
+
+    /* เมนูแบบ dropdown */
+    .nav-menu {
+      position: relative;
+
+      .nav-menu-container {
+        position: absolute;
+        left: 50%; /* เลื่อนซ้ายมา 50% ของ parent */
+        transform: translateX(-50%); /* เลื่อนกลับซ้ายครึ่งหนึ่ง เพื่อจัดกึ่งกลาง */
+
+         /* รายการในเมนู dropdown */
+        .nav-menu-items {
+          display: none;
+          flex-direction: column; /* เมนูย่อยจัดเรียงเป็นคอลัมน์แนวตั้ง */
+          background-color: #fff;
+          margin-top: 10px; /* เว้นช่องว่างจากลิงก์ด้านบน */
+          position: relative;
+          width: 220px;
+          padding: 8px;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px -2px rgba(0, 24, 56, 0.059),
+            0 8px 18px -3px rgba(0, 24, 56, 0.2);
+
+          /* รายการแต่ละเมนู */
+          .menu-item {
+            padding: 12px 8px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 14px;
+
+            &:hover {
+              background-color: #eef5fc;
+              border-radius: 6px;
+            }
+          }
+        }
+      }
+
+       /* แสดงเมนู dropdown เมื่อ hover ที่เมนู */
+      &:hover .nav-menu-items {
+        display: flex;  /* เปลี่ยนเป็น flex เพื่อแสดงเมนู */
+      }
+    }
+
+    .nav-menu:hover .nav-icon,
+    .nav-menu-container .nav-icon {
+      transition: transform 0.2s linear;
+      transform: rotate(-180deg);
+    }
+  }
+
+  .partner-img {
+    height: 24px;
+    margin-left: 24px;
+  }
+}
+
+/* เส้นแบ่งแนวตั้ง ใช้ในเมนูหรือส่วนอื่น */
+.vertical-divider {
+  position: relative;
+  display: inline-block; /* ให้มีขนาดตามเนื้อหาและแสดงเป็นบรรทัดเดียวกับข้อความ */
+  height: 24px;  /* ความสูงของเส้นแบ่ง */
+  margin-right: 13px; /* เว้นระยะห่างขวา */
+  margin-left: 15px;  /* เว้นระยะห่างซ้าย */
+
+  &::before {
+    position: absolute;
+    content: " ";
+    height: 100%;
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    background-color: #6caddf;
+  }
+}
+
+
+button {
+  display: flex;  /* ใช้ flexbox จัดวางเนื้อหาในปุ่ม */
+  align-items: center;  /* จัดให้องค์ประกอบในปุ่มอยู่ตรงกลางแนวตั้ง */
+
+    /* ปุ่มเลือกภูมิภาค */
+  &.region-selection {
+    height: max-content;  /* ให้ความสูงตามเนื้อหาข้างใน */
+    font-weight: 600;
+    font-size: 16px;
+    display: flex; /* ใช้ flexbox */
+    align-items: center; /* จัดเนื้อหาให้อยู่ตรงกลางแนวตั้ง */
+
+  }
+
+  /* ปุ่มล็อกอิน */
+  &.login-button {
+    background: linear-gradient(
+      140.75deg,
+      hsla(0, 0%, 100%, 0.4),
+      hsla(0, 0%, 100%, 0.16)
+    );
+    border: 0.0625rem solid hsla(0, 0%, 100%, 0.5);
+    border-radius: 999px; /* ทำให้มุมปุ่มมนเป็นวงกลม */
+    padding: 4px 12px 4px 4px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5px;
+
+      /* ปุ่มไอคอนล็อกอิน */
+    .login-icon {
+      width: 34px;
+      height: 34px;
+      margin-right: 5px;
+      position: relative;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: auto;
+      border: 0.0625rem solid hsla(0, 0%, 100%, 0.5);
+      background: linear-gradient(
+        140.75deg,
+        hsla(0, 0%, 100%, 0.4),
+        hsla(0, 0%, 100%, 0.16)
+      );
+      border-radius: 999px;
+
+       /* ขยายขนาด SVG ภายใน */
+      svg {
+        transform: scale(1.6);
+        position: absolute;
+        bottom: -1px;
+      }
+    }
+
+    &:hover {
+      border: 0.0625rem solid hsla(0, 0%, 100%, 0.5);
+      background: linear-gradient(
+        140.75deg,
+        hsla(0, 0%, 100%, 0.8),
+        hsla(0, 0%, 100%, 0.48)
+      );
+    }
+  }
+
+  /* ไอคอนปุ่ม */
+  .button-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+}
+
+.highlight-card {
+  margin-block: 30px; /* เว้นช่องว่างบน-ล่าง 30px */
+  display: flex; /* ใช้ flexbox จัด layout ลูกๆ ให้อยู่ในแถวเดียวกัน (แนวนอน) */
+  box-shadow: 0 8px 16px 0 rgba(0, 24, 56, .2); /* เงาเพื่อให้การ์ดดูมีมิติ */
+
+  .card-info {
+    padding-inline: 20px; /* เว้นช่องว่างซ้าย-ขวา 20px ภายในกล่อง */
+    padding-block: 22px 24px;  /* เว้นช่องว่างบน 22px และล่าง 24px ภายในกล่อง */
+    background-color: #001838;
+    display: flex; /* ใช้ flexbox ภายในกล่องนี้ */
+    flex-direction: column; /* จัด layout ลูกๆ เป็นแนวตั้ง (เรียงจากบนลงล่าง) */
+    flex: 1; /* ขยายให้เต็มพื้นที่แนวนอนที่เหลือใน .highlight-card */
+
+    .play-icon {
+      margin-top: auto; /* ดันไอคอนให้ชิดล่างของกล่องนี้โดยใช้ margin-top อัตโนมัติ */
+      margin-bottom: 0;
+    }
+    h2 {
+      color: #fff;
+      font-family: KippaxCondensed, sans-serif;
+      font-weight: 700;
+      font-size: 40px;
+      word-break: break-word;
+      text-transform: uppercase;
+      line-height: 1em;
+      margin-top: 10px;
+    }
+    p {
+      color: rgb(59, 214, 255);
+    }
+  }
+
+  &:hover {
+
+    h2 {
+      text-decoration: underline;
+      text-decoration-color: #3bd6ff;
+      text-decoration-thickness: 4px;
+    }
+  }
+}
+
+.play-icon {
+  width: 56px;
+  height: 56px;
+  padding: 10px; /* ระยะห่างภายในรอบๆ ไอคอน */
+  display: flex; /* ใช้ flexbox เพื่อจัดตำแหน่งลูกภายใน */
+  align-items: center; /* จัดแนวตั้งให้อยู่ตรงกลาง */
+  justify-content: center;  /* จัดแนวนอนให้อยู่ตรงกลาง */
+  border-radius: 9999px;
+  background-color: #3bd6ff;
+  position: relative;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+}
+
+.news-layout {
+  justify-content: center; /* จัดเนื้อหาให้อยู่กึ่งกลางแนวนอน */
+  display: flex; /* ใช้ flexbox เพื่อจัด layout ลูกภายในเป็นแถว */
+  width: auto;
+  margin-inline: auto;  /* เว้นขอบซ้าย-ขวาให้อยู่กึ่งกลางหน้าจอ */
+  margin-top: 28px; /* เว้นช่องว่างด้านบน */
+
+}
+
+.card-container {
+  width: 70%;
+  display: flex; /* ใช้ flexbox */
+  flex-direction: column; /* จัดเรียงลูกในแนวตั้ง */
+
+  .thumbnail {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.75em; /* เว้นช่องว่างล่าง */
+
+  }
+
+  .large-card-layout {
+    display: grid; /* ใช้ CSS Grid สำหรับ layout */
+    gap: 30px; /* ช่องว่างระหว่าง grid items */
+    grid-template-columns: repeat(2, 1fr); /* สร้าง 2 คอลัมน์ ขนาดเท่ากัน */
+    margin-bottom: 24px;
+
+    .large-news-card {
+      .thumbnail-container {
+        position: relative;
+        display: flex;  /* ใช้ flexbox */
+        justify-content: center; /* จัดลูกให้อยู่กึ่งกลางแนวนอน */
+        align-items: center; /* จัดลูกให้อยู่กึ่งกลางแนวตั้ง */
+
+        .play-icon {
+          position: absolute;
+          background-color: rgba(0, 24, 56, 0.5);
+          color: #fff;
+          height: 64px;
+          width: 64px;
+          svg {
+            height: 56px;
+          }
+        }
+      }
+
+      &:hover {
+        cursor: pointer;  /* เปลี่ยน cursor เมื่อ hover */
+        .play-icon {
+          background-color: rgba(0, 24, 56);
+        }
+        .title {
+          text-decoration: underline; /* ขีดเส้นใต้เมื่อ hover */
+        }
+      }
+    }
+
+    p {
+      color: #69738c;
+      font-size: 12px;
+    }
+    h3 {
+      font-size: 17px;
+    }
+  }
+
+  .small-card-layout {
+    display: grid; /* ใช้ CSS Grid */
+    gap: 30px;  /* ช่องว่างระหว่าง grid items */
+    grid-template-columns: repeat(4, 1fr); /* สร้าง 4 คอลัมน์ ขนาดเท่ากัน */
+    .title {
+      font-family: Kippax, sans-serif;
+      word-break: break-word;
+      font-weight: 700;
+      display: inline;  /* แสดงเป็นบรรทัดเดียวกับไอคอน */
+
+      .play-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 7px; /* เว้นช่องว่างขวาของไอคอน */
+        float: left;  /* ลอยซ้าย ให้อยู่ข้างข้อความ */
+      }
+    }
+    p {
+      color: #69738c;
+      font-size: 12px;
+    }
+    h3 {
+      font-size: 17px;
+    }
+  }
+}
+.news-layout,
+.extend-highlight-container-content {
+  .small-card-layout {
+    .small-news-card {
+      &:hover {
+        cursor: pointer; /* เปลี่ยน cursor เป็น pointer เมื่อเอาเมาส์ชี้ */
+        .title {
+          text-decoration: underline; /* ขีดเส้นใต้ชื่อเรื่องเมื่อ hover */
+        }
+      }
+    }
+  }
+}
+
+.match-card-layout {
+  display: grid;  /* ใช้ CSS Grid สำหรับจัด layout */
+  gap: 30px;  /* กำหนดช่องว่างระหว่าง grid items */
+  width: 30%;
+  margin-left: 30px; /* เว้นระยะห่างซ้าย 30px เพื่อแยกจากคอนเทนต์ข้างๆ */
+  .next-match-card,
+  .last-match-card {
+    padding: 20px; /* เว้นระยะห่างด้านใน */
+    border: 1px solid #dde6ed;  /* เส้นขอบสีอ่อนรอบการ์ด */
+  }
+
+  .next-match-card {
+    border-top: 3px solid #3bd6ff;  /* เส้นขอบด้านบนหนาและมีสีพิเศษ */
+    .match-body {
+      margin-top: 0;
+      align-items: start; /* จัดเนื้อหาใน flex container ให้อยู่บนสุดแนวตั้ง */
+    }
+  }
+
+  .header-detail {
+    display: flex; /* ใช้ flexbox สำหรับจัดเนื้อหาในบรรทัดเดียว */
+    justify-content: space-between;  /* จัดเนื้อหาให้ชิดซ้ายและขวาสุด */
+    align-items: center; /* จัดแนวตั้งให้อยู่กึ่งกลาง */
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    a {
+      text-decoration: underline; /* ลิงก์มีขีดเส้นใต้ */
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+  p {
+    color: #69738c;
+  }
+
+  .match-header {
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+    margin-bottom: 15px;
+  }
+  .match-date {
+    font-weight: bold;
+    font-size: 13px;
+    margin: 0;
+    color: black;
+  }
+  .match-subtitle {
+    font-size: 12px;
+    color: #777;
+  }
+  .match-body {
+    display: flex;  /* ใช้ flexbox เพื่อจัดวางเนื้อหาในแถวเดียว */
+    justify-content: center;  /* จัดกึ่งกลางในแนวนอน */
+    align-items: center;  /* จัดกึ่งกลางในแนวตั้ง */
+    text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
+    margin-top: 32px; 
+    font: 15px font-family Kippax, sans-serif;
+    gap: 20px; /* ช่องว่างระหว่างไอเท็มใน flexbox */
+  }
+  .team-name {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  .match-time {
+    padding: 5px 12px;
+    background-color: #dde6ed;
+    display: flex;  /* ใช้ flexbox จัดเนื้อหาในแนวตั้ง */
+    flex-direction: column; /* เรียงลูกภายในเป็นคอลัมน์ */
+    justify-content: center;  /* กึ่งกลางในแนวตั้ง */
+    text-align: center;  /* ข้อความกึ่งกลาง */
+    .time {
+      color: black;
+      font-size: 13px;
+    }
+    .match-time-description {
+      color: #777;
+      font-size: 10px;
+    }
+  }
+
+  .footer-detail {
+    display: flex;  /* ใช้ flexbox จัดปุ่มในแถวเดียว */
+    justify-content: center;  /* จัดปุ่มให้อยู่กึ่งกลางแนวนอน */
+    gap: 10px;  /* ช่องว่างระหว่างปุ่ม */
+    margin-top: 32px;
+
+    button {
+      flex: 1; /* ปุ่มแต่ละอันจะยืดขยายเต็มพื้นที่ที่มีเท่าๆ กัน */
+    }
+  }
+  .button-outline {
+    padding: 10px 18px;
+    border: 2px solid #333;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex; /* ใช้ flexbox เพื่อจัดเนื้อหาภายในปุ่ม */
+    align-items: center; /* จัดแนวตั้งกลาง */
+    justify-content: center;  /* จัดแนวนอนกลาง */
+  }
+
+  .button-fill {
+    color: #333;
+    border: none;
+    display: flex; /* ใช้ flexbox */
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 10px 18px;
+    cursor: pointer;
+
+    &.green-yellow {
+      background-color: #f6ff00;
+    }
+  }
+  .match-result {
+    display: flex;  /* ใช้ flexbox สำหรับจัดคะแนน */
+    gap: 10px; /* ช่องว่างระหว่างคะแนน */
+    align-items: center;  /* จัดกึ่งกลางในแนวตั้ง */
+    justify-content: center; /* กึ่งกลางแนวนอน */
+    font-size: 33px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    .score {
+      background-color: #001838;
+      border-radius: 4px;
+      padding: 5px 5px;
+    }
+  }
+  .macth-result .score {
+    background-color: #001c3d;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.extend-highlight-container-footer {
+  display: flex;  /* ใช้ flexbox จัดเนื้อหาในแถวเดียว */
+  align-items: center; /* จัดชิดกึ่งกลางในแนวตั้ง */
+  /* justify-content: center; */
+  margin: 40px 0;  /* เว้นระยะห่างบน-ล่าง 40px */
+  margin-inline: auto;  /* กึ่งกลางแนวนอนอัตโนมัติ (ซ้าย-ขวา) */
+
+  position: relative;
+
+  &::before,
+  &::after {
+    content: ""; /* สร้างเส้นแบ่งบนและล่าง */
+    width: 100%;
+    height: 1px;
+    background-color: black;
+  }
+}
+
+.footer-button {
+  display: flex;  /* ใช้ flexbox จัดปุ่มในแนวแถว */
+  align-items: center;  /* กึ่งกลางในแนวตั้ง */
+  justify-content: space-between; /* กระจายเนื้อหาในปุ่มให้ชิดซ้าย-ขวา */
+  padding: 11px 11px 11px 8px; /* เว้นระยะห่างภายในปุ่ม */
+  /* margin: 0 16px; */
+  border: 1px solid black; /* เส้นขอบดำรอบปุ่ม */
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;  /* เปลี่ยนเป็น pointer เมื่อ hover */
+  letter-spacing: 0.14px;
+  text-align: center;
+  position: relative;
+  min-width: 230px; /* กำหนดความกว้างขั้นต่ำ */
+  img {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.right-arrow {
+  display: inline-flex;  /* ใช้ inline-flex เพื่อจัดให้อยู่ในบรรทัดเดียว */
+  align-items: center; /* กึ่งกลางแนวตั้ง */
+  margin-left: 100px; /* เว้นระยะห่างซ้ายเยอะเพื่อเลื่อนขวา */
+}
+
+.banner-container {
+  display: flex;  /* ใช้ flexbox แบ่งพื้นที่ให้ลูกได้ */
+  flex: 1; /* ยืดให้เต็มพื้นที่ที่เหลือ */
+  margin-block: 30px; /* เว้นระยะห่างบน-ล่าง 30px */
+  /* justify-content: center; */
+  /* padding: 0 24px;
+  gap: 10px; */
+
+  .insite-banner-container {
+    display: grid; /* ใช้ grid แบ่ง layout banner เป็น 3 คอลัมน์ */
+    grid-template-columns: repeat(3, 1fr); /* 3 คอลัมน์เท่ากัน */
+    background-color: rgb(243, 246, 249);
+    padding: 24px 24px;  /* เว้นระยะห่างภายในบล็อก */
+    gap: 16px;  /* ช่องว่างระหว่าง grid items */
+    width: auto; /* ความกว้างปรับตามเนื้อหา */
+
+    img {
+      height: auto;
+      width: auto;
+    }
+  }
+}
+
+.extend-highlight-container-content {
+  justify-content: center; /* จัดเนื้อหาให้อยู่กลางแนวนอน */
+  display: flex; /* ใช้ flexbox สำหรับ container หลัก */
+  margin-inline: auto;  /* กึ่งกลาง container อัตโนมัติ */
+  margin-top: 28px; /* เว้นระยะห่างด้านบน */
+
+  .small-card-layout {
+    display: grid;  /* ใช้ grid สำหรับ layout การ์ดเล็ก */
+    grid-template-columns: repeat(4, 1fr); /* แบ่งเป็น 4 คอลัมน์เท่ากัน */
+    gap: 10px;   /* ช่องว่างระหว่างการ์ด */
+    margin-right: 20px;  /* เว้นขวาเล็กน้อย */
+
+    .small-news-card {
+      .thumbnail {
+        object-fit: contain; /* รูปไม่บีบหรือขยายเกินอัตราส่วน */
+        height: auto;
+        margin-bottom: 10px;  /* เว้นช่องว่างด้านล่างรูป */
+      }
+
+      .title {
+        display: flex; /* ใช้ flexbox เพื่อจัดไอคอนกับข้อความ */
+        word-break: break-word; /* แบ่งคำเมื่อยาวเกินบรรทัด */
+        font-weight: 700;
+        display: inline;
+
+        .play-icon {
+          width: 20px;
+          height: 20px;
+          margin-right: 7px;  /* เว้นช่องว่างขวาไอคอน */
+          float: left; /* ลอยซ้าย ให้ข้อความตามมา */
+        }
+      }
+      p {
+        color: #69738c;
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 17px;
+      }
+    }
+  }
+}
+
+.partner-container {
+  display: flex;  /* ใช้ flexbox จัดตำแหน่งภาพตรงกลาง */
+  justify-content: center; /* กึ่งกลางแนวนอน */
+  height: 150px;
+  align-items: center; /* กึ่งกลางแนวตั้ง */
+  position: relative;
+
+  img {
+    position: relative;
+    z-index: 2; /* ลอยขึ้นมาเหนือ ::before */
+  }
+
+  &::before {
+    content: ""; /* สร้าง pseudo-element เป็นพื้นหลัง */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5; /* ความโปร่งใส */
+    background: url(./image/background-partner.png) #f8fafc;
+    background-position: 5px 5px; /* ตำแหน่งภาพพื้นหลัง */
+  }
+}
+
+.sponsor-container {
+  background-color: rgb(108, 173, 223);
+  padding: 24px 7%; /* padding ซ้าย-ขวาแบบ responsive */
+  display: grid;  /* ใช้ Grid แสดง sponsor logo */
+  gap: 15px; /* ช่องว่างระหว่าง items */
+  grid-template-columns: repeat(9, auto); /* แสดง 9 คอลัมน์ */
+  justify-content: center; /* กึ่งกลางแนวนอน */
+  justify-items: center; /* จัดภาพแต่ละอันให้อยู่กลาง cell */
+
+  img {
+    object-fit: contain; /* ให้รูปแสดงเต็มแต่ไม่เสียสัดส่วน */
+    width: 120px;
+    height: 72px;
+    margin: 1% 0;
+    &:last-child {
+      grid-column: 1 / -1; /* รูปสุดท้ายให้ขยายเต็มแถว */
+      margin: 0 auto; /* กึ่งกลางแนวนอน */
+    }
+  }
+}
+
+footer {
+  background-color: rgb(0, 24, 56);
+  padding: 48px 40px 48px 40px; /* ระยะห่างภายใน */
+
+  .primary-footer {
+    color: #fff;
+  }
+
+  .nav-footer {
+    display: flex; /* ใช้ flex สำหรับ layout หลัก */
+    align-items: start; /* เริ่มต้นจากด้านบน */
+    flex: 1;
+    position: relative;
+    justify-content: space-between; /* กระจายแต่ละส่วนให้ห่างกัน */
+    margin-bottom: 48px;
+
+    .button-container {
+      /* margin-inline: auto; */
+      display: flex;
+      padding-right: 24px;
+      border-right: 1px solid #69738c; /* เส้นแบ่งด้านขวา */
+    }
+
+    .language {
+      color: #fff;
+      text-align: inherit;
+      background-color: #083456;
+      padding: 12px;
+      border-radius: 28px; /* ปุ่มมนกลม */
+      gap: 8px;
+      cursor: pointer;
+      font-family: Kippax, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .link {
+      margin-right: 0;
+      color: white;
+      position: relative;
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: -5px; /* ขีดเส้นใต้ห่างจากข้อความ */
+        background-color: #fff;
+        left: 0;
+      }
+
+      .arrow-up {
+        color: #fff;
+        svg {
+          rotate: -90deg; /*  หมุนลูกศรให้ชี้ขึ้น */
+        }
+      }
+    }
+  }
+
+  .glyph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px; /* ช่องว่างระหว่าง glyph icons */
+    height: auto;
+    padding-top: 30px;
+    border-top: 1px solid #69738c; /* เส้นแบ่งด้านบน */
+  }
+}
+
+.container {
+  width: 1000px;
+  margin-inline: auto; /* กึ่งกลาง container */
+}
+
