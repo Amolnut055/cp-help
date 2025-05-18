@@ -43,7 +43,7 @@
 /* ปรับภาพให้ขยายเต็มความกว้างของ container */
 img {
   max-width: 100%;
-  vertical-align: middle;  /* จัดแนวภาพให้อยู่กลางแนวแกนตั้ง */
+  vertical-align: middle; /* จัดแนวภาพให้อยู่กลางแนวแกนตั้ง */
 }
 
 /* ตั้งค่าให้ลิงก์ไม่มีเส้นขีด และใช้สีเดียวกับข้อความ */
@@ -82,7 +82,16 @@ button {
     padding: 15px 24px; /* เว้นขอบด้านบน-ล่าง 15px ด้านซ้าย-ขวา 24px */
     display: flex; /* ใช้ flexbox เพื่อจัด layout ภายในเป็นแนวนอน */
     max-width: 1200px; /* กำหนดความกว้างสูงสุด */
-    flex: 1;  /* ให้ container ขยายเต็มพื้นที่ที่มี */
+    flex: 1; /* ให้ container ขยายเต็มพื้นที่ที่มี */
+  }
+
+  .nav-button-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-button {
+    display: none;
   }
 
   /* โลโก้ด้านซ้ายมี margin ขวาเพื่อเว้นช่องว่างระหว่างโลโก้กับเมนู */
@@ -100,7 +109,7 @@ button {
     display: flex; /* จัดเมนูเป็นแนวนอน */
     align-items: center; /* จัดชิดกลางแนวตั้ง */
     gap: 20px; /* ช่องว่างระหว่างลิงก์แต่ละอัน 20px */
-    flex: 1;  /* ขยายเต็มพื้นที่ที่เหลือ */
+    flex: 1; /* ขยายเต็มพื้นที่ที่เหลือ */
     position: relative; /* กำหนดตำแหน่ง relative เพื่อใช้จัดตำแหน่งเมนู dropdown */
 
     /* สไตล์ลิงก์แต่ละอัน */
@@ -111,7 +120,7 @@ button {
       align-items: center;
       position: relative;
 
-       /* ไอคอนภายในลิงก์ */
+      /* ไอคอนภายในลิงก์ */
       .nav-icon {
         margin-left: 4px;
         width: 20px;
@@ -152,9 +161,11 @@ button {
       .nav-menu-container {
         position: absolute;
         left: 50%; /* เลื่อนซ้ายมา 50% ของ parent */
-        transform: translateX(-50%); /* เลื่อนกลับซ้ายครึ่งหนึ่ง เพื่อจัดกึ่งกลาง */
+        transform: translateX(
+          -50%
+        ); /* เลื่อนกลับซ้ายครึ่งหนึ่ง เพื่อจัดกึ่งกลาง */
 
-         /* รายการในเมนู dropdown */
+        /* รายการในเมนู dropdown */
         .nav-menu-items {
           display: none;
           flex-direction: column; /* เมนูย่อยจัดเรียงเป็นคอลัมน์แนวตั้ง */
@@ -182,9 +193,9 @@ button {
         }
       }
 
-       /* แสดงเมนู dropdown เมื่อ hover ที่เมนู */
+      /* แสดงเมนู dropdown เมื่อ hover ที่เมนู */
       &:hover .nav-menu-items {
-        display: flex;  /* เปลี่ยนเป็น flex เพื่อแสดงเมนู */
+        display: flex; /* เปลี่ยนเป็น flex เพื่อแสดงเมนู */
       }
     }
 
@@ -205,9 +216,9 @@ button {
 .vertical-divider {
   position: relative;
   display: inline-block; /* ให้มีขนาดตามเนื้อหาและแสดงเป็นบรรทัดเดียวกับข้อความ */
-  height: 24px;  /* ความสูงของเส้นแบ่ง */
+  height: 24px; /* ความสูงของเส้นแบ่ง */
   margin-right: 13px; /* เว้นระยะห่างขวา */
-  margin-left: 15px;  /* เว้นระยะห่างซ้าย */
+  margin-left: 15px; /* เว้นระยะห่างซ้าย */
 
   &::before {
     position: absolute;
@@ -220,19 +231,17 @@ button {
   }
 }
 
-
 button {
-  display: flex;  /* ใช้ flexbox จัดวางเนื้อหาในปุ่ม */
-  align-items: center;  /* จัดให้องค์ประกอบในปุ่มอยู่ตรงกลางแนวตั้ง */
+  display: flex; /* ใช้ flexbox จัดวางเนื้อหาในปุ่ม */
+  align-items: center; /* จัดให้องค์ประกอบในปุ่มอยู่ตรงกลางแนวตั้ง */
 
-    /* ปุ่มเลือกภูมิภาค */
+  /* ปุ่มเลือกภูมิภาค */
   &.region-selection {
-    height: max-content;  /* ให้ความสูงตามเนื้อหาข้างใน */
+    height: max-content; /* ให้ความสูงตามเนื้อหาข้างใน */
     font-weight: 600;
     font-size: 16px;
     display: flex; /* ใช้ flexbox */
     align-items: center; /* จัดเนื้อหาให้อยู่ตรงกลางแนวตั้ง */
-
   }
 
   /* ปุ่มล็อกอิน */
@@ -249,11 +258,14 @@ button {
     font-weight: 400;
     line-height: 1.5px;
 
-      /* ปุ่มไอคอนล็อกอิน */
+    .login-button-text {
+      margin-left: 5px;
+    }
+
+    /* ปุ่มไอคอนล็อกอิน */
     .login-icon {
       width: 34px;
       height: 34px;
-      margin-right: 5px;
       position: relative;
       display: flex;
       align-items: end;
@@ -268,7 +280,7 @@ button {
       );
       border-radius: 999px;
 
-       /* ขยายขนาด SVG ภายใน */
+      /* ขยายขนาด SVG ภายใน */
       svg {
         transform: scale(1.6);
         position: absolute;
@@ -297,15 +309,15 @@ button {
 .highlight-card {
   margin-block: 30px; /* เว้นช่องว่างบน-ล่าง 30px */
   display: flex; /* ใช้ flexbox จัด layout ลูกๆ ให้อยู่ในแถวเดียวกัน (แนวนอน) */
-  box-shadow: 0 8px 16px 0 rgba(0, 24, 56, .2); /* เงาเพื่อให้การ์ดดูมีมิติ */
+  box-shadow: 0 8px 16px 0 rgba(0, 24, 56, 0.2); /* เงาเพื่อให้การ์ดดูมีมิติ */
 
   .card-info {
     padding-inline: 20px; /* เว้นช่องว่างซ้าย-ขวา 20px ภายในกล่อง */
-    padding-block: 22px 24px;  /* เว้นช่องว่างบน 22px และล่าง 24px ภายในกล่อง */
+    padding-block: 22px 24px; /* เว้นช่องว่างบน 22px และล่าง 24px ภายในกล่อง */
     background-color: #001838;
     display: flex; /* ใช้ flexbox ภายในกล่องนี้ */
     flex-direction: column; /* จัด layout ลูกๆ เป็นแนวตั้ง (เรียงจากบนลงล่าง) */
-    flex: 1; /* ขยายให้เต็มพื้นที่แนวนอนที่เหลือใน .highlight-card */
+    flex: 3; /* ขยายให้เต็มพื้นที่แนวนอนที่เหลือใน .highlight-card */
 
     .play-icon {
       margin-top: auto; /* ดันไอคอนให้ชิดล่างของกล่องนี้โดยใช้ margin-top อัตโนมัติ */
@@ -326,8 +338,11 @@ button {
     }
   }
 
-  &:hover {
+  img {
+    flex: 1;
+  }
 
+  &:hover {
     h2 {
       text-decoration: underline;
       text-decoration-color: #3bd6ff;
@@ -342,7 +357,7 @@ button {
   padding: 10px; /* ระยะห่างภายในรอบๆ ไอคอน */
   display: flex; /* ใช้ flexbox เพื่อจัดตำแหน่งลูกภายใน */
   align-items: center; /* จัดแนวตั้งให้อยู่ตรงกลาง */
-  justify-content: center;  /* จัดแนวนอนให้อยู่ตรงกลาง */
+  justify-content: center; /* จัดแนวนอนให้อยู่ตรงกลาง */
   border-radius: 9999px;
   background-color: #3bd6ff;
   position: relative;
@@ -358,9 +373,8 @@ button {
   justify-content: center; /* จัดเนื้อหาให้อยู่กึ่งกลางแนวนอน */
   display: flex; /* ใช้ flexbox เพื่อจัด layout ลูกภายในเป็นแถว */
   width: auto;
-  margin-inline: auto;  /* เว้นขอบซ้าย-ขวาให้อยู่กึ่งกลางหน้าจอ */
+  margin-inline: auto; /* เว้นขอบซ้าย-ขวาให้อยู่กึ่งกลางหน้าจอ */
   margin-top: 28px; /* เว้นช่องว่างด้านบน */
-
 }
 
 .card-container {
@@ -372,7 +386,6 @@ button {
     width: 100%;
     height: auto;
     margin-bottom: 0.75em; /* เว้นช่องว่างล่าง */
-
   }
 
   .large-card-layout {
@@ -384,7 +397,7 @@ button {
     .large-news-card {
       .thumbnail-container {
         position: relative;
-        display: flex;  /* ใช้ flexbox */
+        display: flex; /* ใช้ flexbox */
         justify-content: center; /* จัดลูกให้อยู่กึ่งกลางแนวนอน */
         align-items: center; /* จัดลูกให้อยู่กึ่งกลางแนวตั้ง */
 
@@ -401,7 +414,7 @@ button {
       }
 
       &:hover {
-        cursor: pointer;  /* เปลี่ยน cursor เมื่อ hover */
+        cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
         .play-icon {
           background-color: rgba(0, 24, 56);
         }
@@ -422,19 +435,19 @@ button {
 
   .small-card-layout {
     display: grid; /* ใช้ CSS Grid */
-    gap: 30px;  /* ช่องว่างระหว่าง grid items */
+    gap: 30px; /* ช่องว่างระหว่าง grid items */
     grid-template-columns: repeat(4, 1fr); /* สร้าง 4 คอลัมน์ ขนาดเท่ากัน */
     .title {
       font-family: Kippax, sans-serif;
       word-break: break-word;
       font-weight: 700;
-      display: inline;  /* แสดงเป็นบรรทัดเดียวกับไอคอน */
+      display: inline; /* แสดงเป็นบรรทัดเดียวกับไอคอน */
 
       .play-icon {
         width: 20px;
         height: 20px;
         margin-right: 7px; /* เว้นช่องว่างขวาของไอคอน */
-        float: left;  /* ลอยซ้าย ให้อยู่ข้างข้อความ */
+        float: left; /* ลอยซ้าย ให้อยู่ข้างข้อความ */
       }
     }
     p {
@@ -461,18 +474,24 @@ button {
 }
 
 .match-card-layout {
-  display: grid;  /* ใช้ CSS Grid สำหรับจัด layout */
-  gap: 30px;  /* กำหนดช่องว่างระหว่าง grid items */
+  display: grid; /* ใช้ CSS Grid สำหรับจัด layout */
+  gap: 30px; /* กำหนดช่องว่างระหว่าง grid items */
   width: 30%;
   margin-left: 30px; /* เว้นระยะห่างซ้าย 30px เพื่อแยกจากคอนเทนต์ข้างๆ */
+
+  .match-card-title {
+    display: none;
+  }
+
   .next-match-card,
   .last-match-card {
     padding: 20px; /* เว้นระยะห่างด้านใน */
-    border: 1px solid #dde6ed;  /* เส้นขอบสีอ่อนรอบการ์ด */
+    border: 1px solid #dde6ed; /* เส้นขอบสีอ่อนรอบการ์ด */
+    background-color: #fff;
   }
 
   .next-match-card {
-    border-top: 3px solid #3bd6ff;  /* เส้นขอบด้านบนหนาและมีสีพิเศษ */
+    border-top: 3px solid #3bd6ff; /* เส้นขอบด้านบนหนาและมีสีพิเศษ */
     .match-body {
       margin-top: 0;
       align-items: start; /* จัดเนื้อหาใน flex container ให้อยู่บนสุดแนวตั้ง */
@@ -481,7 +500,7 @@ button {
 
   .header-detail {
     display: flex; /* ใช้ flexbox สำหรับจัดเนื้อหาในบรรทัดเดียว */
-    justify-content: space-between;  /* จัดเนื้อหาให้ชิดซ้ายและขวาสุด */
+    justify-content: space-between; /* จัดเนื้อหาให้ชิดซ้ายและขวาสุด */
     align-items: center; /* จัดแนวตั้งให้อยู่กึ่งกลาง */
     font-size: 14px;
     font-weight: bold;
@@ -512,11 +531,11 @@ button {
     color: #777;
   }
   .match-body {
-    display: flex;  /* ใช้ flexbox เพื่อจัดวางเนื้อหาในแถวเดียว */
-    justify-content: center;  /* จัดกึ่งกลางในแนวนอน */
-    align-items: center;  /* จัดกึ่งกลางในแนวตั้ง */
+    display: flex; /* ใช้ flexbox เพื่อจัดวางเนื้อหาในแถวเดียว */
+    justify-content: center; /* จัดกึ่งกลางในแนวนอน */
+    align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
     text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
-    margin-top: 32px; 
+    margin-top: 32px;
     font: 15px font-family Kippax, sans-serif;
     gap: 20px; /* ช่องว่างระหว่างไอเท็มใน flexbox */
   }
@@ -528,10 +547,10 @@ button {
   .match-time {
     padding: 5px 12px;
     background-color: #dde6ed;
-    display: flex;  /* ใช้ flexbox จัดเนื้อหาในแนวตั้ง */
+    display: flex; /* ใช้ flexbox จัดเนื้อหาในแนวตั้ง */
     flex-direction: column; /* เรียงลูกภายในเป็นคอลัมน์ */
-    justify-content: center;  /* กึ่งกลางในแนวตั้ง */
-    text-align: center;  /* ข้อความกึ่งกลาง */
+    justify-content: center; /* กึ่งกลางในแนวตั้ง */
+    text-align: center; /* ข้อความกึ่งกลาง */
     .time {
       color: black;
       font-size: 13px;
@@ -543,43 +562,20 @@ button {
   }
 
   .footer-detail {
-    display: flex;  /* ใช้ flexbox จัดปุ่มในแถวเดียว */
-    justify-content: center;  /* จัดปุ่มให้อยู่กึ่งกลางแนวนอน */
-    gap: 10px;  /* ช่องว่างระหว่างปุ่ม */
+    display: flex; /* ใช้ flexbox จัดปุ่มในแถวเดียว */
+    justify-content: center; /* จัดปุ่มให้อยู่กึ่งกลางแนวนอน */
+    gap: 10px; /* ช่องว่างระหว่างปุ่ม */
     margin-top: 32px;
 
     button {
       flex: 1; /* ปุ่มแต่ละอันจะยืดขยายเต็มพื้นที่ที่มีเท่าๆ กัน */
     }
   }
-  .button-outline {
-    padding: 10px 18px;
-    border: 2px solid #333;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex; /* ใช้ flexbox เพื่อจัดเนื้อหาภายในปุ่ม */
-    align-items: center; /* จัดแนวตั้งกลาง */
-    justify-content: center;  /* จัดแนวนอนกลาง */
-  }
 
-  .button-fill {
-    color: #333;
-    border: none;
-    display: flex; /* ใช้ flexbox */
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    padding: 10px 18px;
-    cursor: pointer;
-
-    &.green-yellow {
-      background-color: #f6ff00;
-    }
-  }
   .match-result {
-    display: flex;  /* ใช้ flexbox สำหรับจัดคะแนน */
+    display: flex; /* ใช้ flexbox สำหรับจัดคะแนน */
     gap: 10px; /* ช่องว่างระหว่างคะแนน */
-    align-items: center;  /* จัดกึ่งกลางในแนวตั้ง */
+    align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
     justify-content: center; /* กึ่งกลางแนวนอน */
     font-size: 33px;
     color: #fff;
@@ -601,12 +597,37 @@ button {
   }
 }
 
+.button-outline {
+  padding: 10px 18px;
+  border: 2px solid #333;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex; /* ใช้ flexbox เพื่อจัดเนื้อหาภายในปุ่ม */
+  align-items: center; /* จัดแนวตั้งกลาง */
+  justify-content: center; /* จัดแนวนอนกลาง */
+}
+
+.button-fill {
+  color: #333;
+  border: none;
+  display: flex; /* ใช้ flexbox */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 10px 18px;
+  cursor: pointer;
+
+  &.green-yellow {
+    background-color: #f6ff00;
+  }
+}
+
 .extend-highlight-container-footer {
-  display: flex;  /* ใช้ flexbox จัดเนื้อหาในแถวเดียว */
+  display: flex; /* ใช้ flexbox จัดเนื้อหาในแถวเดียว */
   align-items: center; /* จัดชิดกึ่งกลางในแนวตั้ง */
   /* justify-content: center; */
-  margin: 40px 0;  /* เว้นระยะห่างบน-ล่าง 40px */
-  margin-inline: auto;  /* กึ่งกลางแนวนอนอัตโนมัติ (ซ้าย-ขวา) */
+  margin: 40px 0; /* เว้นระยะห่างบน-ล่าง 40px */
+  margin-inline: auto; /* กึ่งกลางแนวนอนอัตโนมัติ (ซ้าย-ขวา) */
 
   position: relative;
 
@@ -620,15 +641,15 @@ button {
 }
 
 .footer-button {
-  display: flex;  /* ใช้ flexbox จัดปุ่มในแนวแถว */
-  align-items: center;  /* กึ่งกลางในแนวตั้ง */
+  display: flex; /* ใช้ flexbox จัดปุ่มในแนวแถว */
+  align-items: center; /* กึ่งกลางในแนวตั้ง */
   justify-content: space-between; /* กระจายเนื้อหาในปุ่มให้ชิดซ้าย-ขวา */
   padding: 11px 11px 11px 8px; /* เว้นระยะห่างภายในปุ่ม */
   /* margin: 0 16px; */
   border: 1px solid black; /* เส้นขอบดำรอบปุ่ม */
   font-weight: 700;
   font-size: 13px;
-  cursor: pointer;  /* เปลี่ยนเป็น pointer เมื่อ hover */
+  cursor: pointer; /* เปลี่ยนเป็น pointer เมื่อ hover */
   letter-spacing: 0.14px;
   text-align: center;
   position: relative;
@@ -640,13 +661,13 @@ button {
 }
 
 .right-arrow {
-  display: inline-flex;  /* ใช้ inline-flex เพื่อจัดให้อยู่ในบรรทัดเดียว */
+  display: inline-flex; /* ใช้ inline-flex เพื่อจัดให้อยู่ในบรรทัดเดียว */
   align-items: center; /* กึ่งกลางแนวตั้ง */
   margin-left: 100px; /* เว้นระยะห่างซ้ายเยอะเพื่อเลื่อนขวา */
 }
 
 .banner-container {
-  display: flex;  /* ใช้ flexbox แบ่งพื้นที่ให้ลูกได้ */
+  display: flex; /* ใช้ flexbox แบ่งพื้นที่ให้ลูกได้ */
   flex: 1; /* ยืดให้เต็มพื้นที่ที่เหลือ */
   margin-block: 30px; /* เว้นระยะห่างบน-ล่าง 30px */
   /* justify-content: center; */
@@ -657,8 +678,8 @@ button {
     display: grid; /* ใช้ grid แบ่ง layout banner เป็น 3 คอลัมน์ */
     grid-template-columns: repeat(3, 1fr); /* 3 คอลัมน์เท่ากัน */
     background-color: rgb(243, 246, 249);
-    padding: 24px 24px;  /* เว้นระยะห่างภายในบล็อก */
-    gap: 16px;  /* ช่องว่างระหว่าง grid items */
+    padding: 24px 24px; /* เว้นระยะห่างภายในบล็อก */
+    gap: 16px; /* ช่องว่างระหว่าง grid items */
     width: auto; /* ความกว้างปรับตามเนื้อหา */
 
     img {
@@ -671,20 +692,20 @@ button {
 .extend-highlight-container-content {
   justify-content: center; /* จัดเนื้อหาให้อยู่กลางแนวนอน */
   display: flex; /* ใช้ flexbox สำหรับ container หลัก */
-  margin-inline: auto;  /* กึ่งกลาง container อัตโนมัติ */
+  margin-inline: auto; /* กึ่งกลาง container อัตโนมัติ */
   margin-top: 28px; /* เว้นระยะห่างด้านบน */
 
   .small-card-layout {
-    display: grid;  /* ใช้ grid สำหรับ layout การ์ดเล็ก */
+    display: grid; /* ใช้ grid สำหรับ layout การ์ดเล็ก */
     grid-template-columns: repeat(4, 1fr); /* แบ่งเป็น 4 คอลัมน์เท่ากัน */
-    gap: 10px;   /* ช่องว่างระหว่างการ์ด */
-    margin-right: 20px;  /* เว้นขวาเล็กน้อย */
+    gap: 10px; /* ช่องว่างระหว่างการ์ด */
+    margin-right: 20px; /* เว้นขวาเล็กน้อย */
 
     .small-news-card {
       .thumbnail {
         object-fit: contain; /* รูปไม่บีบหรือขยายเกินอัตราส่วน */
         height: auto;
-        margin-bottom: 10px;  /* เว้นช่องว่างด้านล่างรูป */
+        margin-bottom: 10px; /* เว้นช่องว่างด้านล่างรูป */
       }
 
       .title {
@@ -696,7 +717,7 @@ button {
         .play-icon {
           width: 20px;
           height: 20px;
-          margin-right: 7px;  /* เว้นช่องว่างขวาไอคอน */
+          margin-right: 7px; /* เว้นช่องว่างขวาไอคอน */
           float: left; /* ลอยซ้าย ให้ข้อความตามมา */
         }
       }
@@ -712,7 +733,7 @@ button {
 }
 
 .partner-container {
-  display: flex;  /* ใช้ flexbox จัดตำแหน่งภาพตรงกลาง */
+  display: flex; /* ใช้ flexbox จัดตำแหน่งภาพตรงกลาง */
   justify-content: center; /* กึ่งกลางแนวนอน */
   height: 150px;
   align-items: center; /* กึ่งกลางแนวตั้ง */
@@ -737,11 +758,15 @@ button {
 .sponsor-container {
   background-color: rgb(108, 173, 223);
   padding: 24px 7%; /* padding ซ้าย-ขวาแบบ responsive */
-  display: grid;  /* ใช้ Grid แสดง sponsor logo */
+  display: grid; /* ใช้ Grid แสดง sponsor logo */
   gap: 15px; /* ช่องว่างระหว่าง items */
   grid-template-columns: repeat(9, auto); /* แสดง 9 คอลัมน์ */
   justify-content: center; /* กึ่งกลางแนวนอน */
   justify-items: center; /* จัดภาพแต่ละอันให้อยู่กลาง cell */
+
+  .see-all-partner {
+    display: none;
+  }
 
   img {
     object-fit: contain; /* ให้รูปแสดงเต็มแต่ไม่เสียสัดส่วน */
@@ -776,6 +801,23 @@ footer {
       display: flex;
       padding-right: 24px;
       border-right: 1px solid #69738c; /* เส้นแบ่งด้านขวา */
+
+      .language {
+        margin-left: 160px;
+      }
+    }
+
+    .footer-button-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      .button-container {
+        margin-inline: auto;
+      }
+      .link {
+        margin-left: auto;
+        margin-right: 0;
+      }
     }
 
     .language {
@@ -831,3 +873,197 @@ footer {
   margin-inline: auto; /* กึ่งกลาง container */
 }
 
+@media screen and (max-width: 500px) {
+  .nav-bar {
+    .nav-container {
+      position: relative;
+      .nav-logo {
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        img {
+          width: 48px;
+          height: 48px;
+        }
+      }
+
+      .hamburger-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: transparent;
+      }
+
+      .nav-button-container {
+        margin-left: auto;
+        margin-right: 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .partner-img {
+        display: none;
+      }
+
+      .login-button {
+        justify-content: center;
+        padding: 4px;
+        .login-button-text {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .highlight-card {
+    flex-direction: column;
+
+    .card-info {
+      order: 2;
+
+      .play-icon {
+        margin-top: 3em;
+      }
+    }
+  }
+
+  .news-layout {
+    flex-direction: column;
+
+    .card-container {
+      padding: 1em;
+      width: 100%;
+      .large-card-layout,
+      .small-card-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+
+        .large-news-card,
+        .small-news-card {
+          display: grid;
+          grid-template-columns: 170px 1fr;
+
+          .card-content {
+            margin-left: 1em;
+          }
+
+          .thumbnail-container {
+            width: 170px;
+
+            .thumbnail {
+              height: 100%;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .match-card-layout {
+      width: 100%;
+      margin: 0;
+      padding: 1em;
+      background-color: rgb(243, 246, 249);
+
+      .match-card-title {
+        display: block;
+        margin-top: 0.25em;
+        margin-bottom: -0.5em;
+      }
+    }
+  }
+
+  .banner-container {
+    margin-top: 0;
+  }
+
+  .sponsor-container {
+    display: flex;
+    padding: 1.25em;
+
+    .partner-image {
+      display: none;
+    }
+
+    .see-all-partner {
+      display: flex;
+      width: 100%;
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .extend-highlight-container-content {
+    display: flex;
+    flex-direction: column;
+
+    .small-card-layout {
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+
+      .small-news-card {
+        display: grid;
+        grid-template-columns: 170px 1fr;
+
+        .card-content {
+          margin-left: 1em;
+        }
+      }
+    }
+
+    .buy-ticket-img {
+      display: none;
+    }
+  }
+
+  .extend-highlight-container-footer {
+    padding-inline: 1em;
+  }
+
+  footer {
+    padding: 2.5em 1em;
+    .nav-footer {
+      margin-bottom: 24px;
+      flex-direction: column;
+
+      img[alt="city-logo"] {
+        margin-inline: auto;
+        width: 68px;
+        height: 68px;
+      }
+
+      .footer-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 2em;
+        padding-top: 24px;
+        border-top: 1px solid #69738c;
+      }
+      
+      .footer-button-container {
+        .button-container {
+          border-right: 0;
+          margin-inline: 0;
+          padding: 0;
+
+          .language {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
